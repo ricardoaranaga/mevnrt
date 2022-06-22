@@ -1,0 +1,23 @@
+{
+  "name": "redis-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js",
+    "serve": "nodemon server.js",
+    "format": "prettier server.js **/*.js --write"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ioredis": "^4.28.5",
+    "redis": "^4.0.4",
+    "ws": "^8.5.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.3",
+    "prettier": "^2.0.5"
+  }
+}

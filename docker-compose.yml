@@ -1,0 +1,96 @@
+version: '3'
+volumes:
+  traefik-ssl-certs:
+    driver: local
+
+services:
+  # reverse-proxy:
+  #   image: nginx:1.17.10
+  #   container_name: reverse_proxy
+  #   depends_on:
+  #       - vue-client
+  #   volumes:
+  #     - ./reverse-proxy/nginx.conf:/etc/nginx/nginx.conf
+  #   ports:
+  #     - 80:80
+
+  traefik:
+    image: "traefik:v2.5"
+    container_name: "traefik"
+    ports:
+      - "80:80"
+      - "443:443"
+      # (Optional) Expose Dashboard
+      #- "8080:8080"  # Don't do this in production!
+    volumes:
+      - ./reverse-proxy/traefik.yml:/etc/traefik/traefik.yml
+      - traefik-ssl-certs:/ssl-certs
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+  vue-client:
+    build: 
+      context: ./client
+    image: vue-client
+    container_name: vue-client
+    labels:
+      #http
+      - traefik.enable=true
+      - traefik.http.routers.frontend.entrypoints=web
+      - traefik.http.routers.frontend.rule=PathPrefix(`/`)
+      #https
+      - traefik.http.routers.frontend.tls=true
+      - traefik.http.routers.frontend.entrypoints=websecure
+      - traefik.http.routers.frontend.tls.certresolver=staging
+    volumes:
+      - /app/node_modules
+      - ./client:/app
+    depends_on:
+      - api-server
+
+  api-server:
+    build: ./api-server
+    command: bash -c "npm install && npm run serve"
+    volumes:
+      - /app/node_modules
+      - ./api-server:/app
+    environment:
+      - DB_URL=mongodb://mongo:27017/userdb
+    container_name: api-server
+    ports:
+      - "7000:7000"
+    depends_on:
+      - mongo
+      - redis
+
+  mongo:
+    image: mongo
+    volumes:
+      - ./tmp/data:/data/db
+    container_name: mongo
+    ports:
+      - "27017:27017" 
+
+  redis:
+    image: redis:6.2-alpine
+    restart: always
+    container_name: redis
+    ports:
+      - '6379:6379'
+    command: redis-server --save 20 1 --loglevel warning
+    volumes: 
+      - /tmp/redis:/data
+  
+  redis-server:
+    build: ./redis-server
+    command: bash -c "npm install && npm run serve"
+    volumes:
+      - /app/node_modules
+      - ./redis-server:/app
+    container_name: redis-server
+    ports:
+      - "7001:7001"
+    depends_on:
+      - redis
+    links:
+      - redis
+      - vue-client
