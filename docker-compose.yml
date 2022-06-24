@@ -56,6 +56,15 @@ services:
     environment:
       - DB_URL=mongodb://mongo:27017/userdb
     container_name: api-server
+    labels:
+      #http
+      - traefik.enable=true
+      - traefik.http.routers.backend.entrypoints=web
+      - traefik.http.routers.backend.rule=PathPrefix(`/api`)
+      #https
+      - traefik.http.routers.backend.tls=true
+      - traefik.http.routers.backend.entrypoints=websecure
+      - traefik.http.routers.backend.tls.certresolver=staging
     ports:
       - "7000:7000"
     depends_on:

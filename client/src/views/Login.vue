@@ -56,7 +56,7 @@ import { useRouter } from "vue-router";
 
 const router = useRouter();
 const userStore = useUserStore();
-const jwtUrl = "http://localhost:7000/api/auth/signin";
+const jwtUrl = "/api/auth/signin";
 
 let valid = true;
 
