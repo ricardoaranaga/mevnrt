@@ -61,8 +61,8 @@ import Swal from 'sweetalert2';
 
 const userStore = useUserStore();
 const user = userStore.user;
-const allUsersUrl = 'http://localhost:7000/api/users/all'
-const deleteUserUrl = 'http://localhost:7000/api/auth/delete'
+const allUsersUrl = '/api/users/all'
+const deleteUserUrl = '/api/auth/delete'
 
 const allUsers = ref({})
 const users = ref([])

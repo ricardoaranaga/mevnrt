@@ -62,7 +62,7 @@ const router = useRouter();
 
 const userStore = useUserStore();
 const user = userStore.$state.user
-const signupUrl = "http://localhost:7000/api/auth/signup";
+const signupUrl = "/api/auth/signup";
 
 const form = ref({
   username: "",

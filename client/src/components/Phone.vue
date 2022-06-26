@@ -8,7 +8,7 @@ import { ref, onMounted } from 'vue';
 const resizableAttribs = []
 const tW = 365
 const tH = 365
-const jwtUrl = "http://localhost:7000/no-auth"
+const jwtUrl = "/no-auth"
 let phone = ref({
   number: '',
   country: {}
