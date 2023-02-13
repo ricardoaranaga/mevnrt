@@ -10,6 +10,7 @@
   "dependencies": {
     "@fortawesome/vue-fontawesome": "^3.0.0-5",
     "@vonage/vc-keypad": "^1.0.0",
+    "daisyui": "^2.50.0",
     "nexmo-client": "^8.6.0",
     "pinia": "^2.0.11",
     "vue": "^3.2.31",

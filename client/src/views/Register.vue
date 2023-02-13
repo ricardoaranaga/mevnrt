@@ -1,4 +1,44 @@
 <template>
+
+<form @submit.prevent="onSubmit" class="form-control">
+  <label class="label">
+    <span class="label-text">Personal Information</span>
+  </label>
+  <label class="input-group pb-4">
+    <span for="first-name" class="w-28">First name</span>
+    <input v-model="form.name" name="first-name" id="first-name" autocomplete="given-name" required type="text" placeholder="John" class="input input-bordered" />
+  </label>
+  <label class="input-group pb-4">
+    <span for="last-name" class="w-28">Last name</span>
+    <input v-model="form.lastname" name="last-name" id="last-name" autocomplete="family-name" required type="text" placeholder="Dou" class="input input-bordered" />
+  </label>
+  <label class="input-group pb-4">
+    <span for="enail" class="w-28">Email</span>
+    <input v-model="form.email" name="email" id="email" autocomplete="email" required type="text" placeholder="john@example.com" class="input input-bordered" />
+  </label>
+  <div class="input-group pb-4">
+    <span for="role" class="w-28">Role</span>
+    <select v-model="form.role" name="role" id="role" autocomplete="role" required class="select select-bordered">
+      <option selected>user</option>
+      <option>admin</option>
+    </select>
+  </div>
+  <label class="input-group pb-4">
+    <span for="username" class="w-28">username</span>
+    <input v-model="form.username" name="username" id="username" autocomplete="username" required type="text" class="input input-bordered" />
+  </label>
+  <label class="input-group pb-4">
+    <span for="password" class="w-28">password</span>
+    <input v-model="form.password" type="password" name="password" id="password" autocomplete="password" required class="input input-bordered" />
+  </label>
+  <div class="px-4 py-3 text-right">
+    <button class="btn primary">Save</button>
+  </div>
+
+</form>
+
+
+<!--
   <div class="mt-10 sm:mt-0">
     <div class="md:grid md:grid-cols-2 md:gap-6">
       <div class="mt-5 md:mt-0 md:col-span-2">
@@ -49,7 +89,7 @@
       </div>
     </div>
   </div>
-  
+  -->
 </template>
 
 <script lang="ts" setup>

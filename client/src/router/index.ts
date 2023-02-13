@@ -2,7 +2,6 @@ import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import Login from "../views/Login.vue";
 import Customers from '../views/Customers.vue';
-import Leads from '../views/leads.vue';
 import Register from '../views/Register.vue';
 import Users from '../views/Users.vue';
 
@@ -15,14 +14,6 @@ const router = createRouter({
       path: "/",
       name: "home",
       component: HomeView,
-      meta: {
-        layout: "defaultLayout",
-      },
-    },
-    {
-      path: "/leads",
-      name: "leads",
-      component: Leads,
       meta: {
         layout: "defaultLayout",
       },
