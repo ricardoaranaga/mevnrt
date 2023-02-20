@@ -18,30 +18,22 @@
     <a class="btn btn-ghost normal-case text-xl">Pool Tech App</a>
   </div>
   <div class="navbar-end">
-    <button class="btn btn-ghost btn-circle">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-    </button>
-    <button :disabled="events.length < 1" @click="showEvents = !showEvents" class="btn btn-ghost btn-circle">
-      <div class="indicator">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg>
-        <span v-if="events.length > 0" class="badge badge-xs badge-primary indicator-item">{{events.length}}</span>
-      </div>
-    </button>
-    <div v-if="showEvents" class="absolute z-10 left-1/2 transform -translate-x-1/2 mt-3 px-2 w-screen max-w-md sm:px-0">
-        <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
-            <div class="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
-                <div class="ml-4">
-                    <p v-for="(event, index) in events" class="text-base font-medium text-gray-900">{{events[index]}}</p>
-                </div>
+    <div class="dropdown dropdown-end">
+        <button :disabled="events.length < 1" tabindex="0" class="btn btn-ghost btn-circle">
+            <div class="indicator">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg>
+                <span v-if="events.length > 0" class="badge badge-xs badge-primary indicator-item">{{events.length}}</span>
             </div>
-        </div>
+        </button>
+        <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+            <li v-for="(event, index) in events"><a>{{events[index]}}</a></li>
+        </ul>
     </div>
-
   </div>
 </div>
 
 
-<div class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">   
+<div class="flex justify-center py-12 px-4 sm:px-6 lg:px-8">   
     <main>
         <router-view />
     </main>

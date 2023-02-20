@@ -4,34 +4,34 @@
   <label class="label">
     <span class="label-text">Personal Information</span>
   </label>
-  <label class="input-group pb-4">
-    <span for="first-name" class="w-28">First name</span>
-    <input v-model="form.name" name="first-name" id="first-name" autocomplete="given-name" required type="text" placeholder="John" class="input input-bordered" />
+  <label class="flex flex-col input-group pb-4">
+    <span for="first-name" class="w-full max-w-xs">First name</span>
+    <input v-model="form.name" name="first-name" id="first-name" autocomplete="given-name" required type="text" placeholder="John" class="input input-bordered w-full max-w-xs" />
   </label>
-  <label class="input-group pb-4">
-    <span for="last-name" class="w-28">Last name</span>
-    <input v-model="form.lastname" name="last-name" id="last-name" autocomplete="family-name" required type="text" placeholder="Dou" class="input input-bordered" />
+  <label class="flex flex-col input-group pb-4">
+    <span for="last-name" class="w-full max-w-xs">Last name</span>
+    <input v-model="form.lastname" name="last-name" id="last-name" autocomplete="family-name" required type="text" placeholder="Dou" class="input input-bordered w-full max-w-xs" />
   </label>
-  <label class="input-group pb-4">
-    <span for="enail" class="w-28">Email</span>
-    <input v-model="form.email" name="email" id="email" autocomplete="email" required type="text" placeholder="john@example.com" class="input input-bordered" />
+  <label class="flex flex-col input-group pb-4">
+    <span for="enail" class="w-full max-w-xs">Email</span>
+    <input v-model="form.email" name="email" id="email" autocomplete="email" required type="text" placeholder="john@example.com" class="input input-bordered w-full max-w-xs" />
   </label>
-  <div class="input-group pb-4">
-    <span for="role" class="w-28">Role</span>
-    <select v-model="form.role" name="role" id="role" autocomplete="role" required class="select select-bordered">
+  <div class="flex flex-col input-group pb-4">
+    <span for="role" class="w-full max-w-xs">Role</span>
+    <select v-model="form.role" name="role" id="role" autocomplete="role" required class="select select-bordered w-full max-w-xs">
       <option selected>user</option>
       <option>admin</option>
     </select>
   </div>
-  <label class="input-group pb-4">
-    <span for="username" class="w-28">username</span>
-    <input v-model="form.username" name="username" id="username" autocomplete="username" required type="text" class="input input-bordered" />
+  <label class="flex flex-col input-group pb-4">
+    <span for="username" class="w-full max-w-xs">username</span>
+    <input v-model="form.username" name="username" id="username" autocomplete="username" required type="text" class="input input-bordered w-full max-w-xs" />
   </label>
-  <label class="input-group pb-4">
-    <span for="password" class="w-28">password</span>
-    <input v-model="form.password" type="password" name="password" id="password" autocomplete="password" required class="input input-bordered" />
+  <label class="flex flex-col input-group pb-4">
+    <span for="password" class="w-full max-w-xs">password</span>
+    <input v-model="form.password" type="password" name="password" id="password" autocomplete="password" required class="input input-bordered w-full max-w-xs" />
   </label>
-  <div class="px-4 py-3 text-right">
+  <div class="text-right">
     <button class="btn primary">Save</button>
   </div>
 

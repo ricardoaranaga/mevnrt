@@ -1,0 +1,48 @@
+Arguments: 
+  /usr/bin/node /usr/bin/yarn install
+
+PATH: 
+  /home/raranaga/.local/share/zinit/plugins/sharkdp---bat:/home/raranaga/.local/share/zinit/plugins/ogham---exa:/run/user/1000/fnm_multishells/10273_1676411105195/bin:/home/raranaga/.local/share/fnm:/home/raranaga/.local/share/zinit/plugins/starship---starship:/home/raranaga/.local/share/zinit/plugins/junegunn---fzf-bin:/home/raranaga/.local/share/zinit/polaris/bin:/home/raranaga/.cargo/bin:/home/raranaga/.local/bin:/home/raranaga/.scripts:/home/raranaga/.local/share/pnpm:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  19.6.0
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: EACCES: permission denied, mkdir '/home/raranaga/GitHub/mevnrt/redis-server/node_modules/abbrev'
+
+npm manifest: 
+  {
+    "name": "redis-server",
+    "version": "1.0.0",
+    "description": "",
+    "main": "server.js",
+    "scripts": {
+      "dev": "node server.js",
+      "serve": "nodemon server.js",
+      "format": "prettier server.js **/*.js --write"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "ioredis": "^4.28.5",
+      "redis": "^4.0.4",
+      "ws": "^8.5.0"
+    },
+    "devDependencies": {
+      "nodemon": "^1.18.3",
+      "prettier": "^2.0.5"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

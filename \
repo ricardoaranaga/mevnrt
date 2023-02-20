@@ -20,7 +20,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-if="customers" v-for="row in filteredRows" :key="row.email" class="hover">
+      <tr v-if="customers" v-for="row in filteredRows" :key="row._id" class="hover">
         <td v-html="highlightMatches(row.name)"></td>
         <td v-html="highlightMatches(row.lastname)"></td>
         <td v-html="highlightMatches(row.email)"></td>
@@ -55,70 +55,58 @@
       <tr>
         <th>Name</th>
         <th>Lastname</th>
-
+        
       </tr>
     </thead>
     <tbody>
-      <tr v-if="customers" v-for="row in filteredRows" :key="row.email" class="hover">
-        <td v-html="highlightMatches(row.name)"></td>
-        <td v-html="highlightMatches(row.lastname)"></td>
-        <td>
-            <label @click="loadMobileModal(row)" class="btn btn-ghost">
-                <svg height="16px" id="Layer_1" style="enable-background:new 0 0 16 16;" version="1.1" viewBox="0 0 16 16" width="16px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M2,6C0.896,6,0,6.896,0,8s0.896,2,2,2s2-0.896,2-2S3.104,6,2,6z M8,6C6.896,6,6,6.896,6,8s0.896,2,2,2s2-0.896,2-2  S9.104,6,8,6z M14,6c-1.104,0-2,0.896-2,2s0.896,2,2,2s2-0.896,2-2S15.104,6,14,6z"/></svg>
-            </label>
-            <div v-if="showMobileModal" class="fixed z-50 inset-0 overflow-y-auto">
-                <div class="flex items-center justify-center min-h-screen">
-                    <div class="fixed inset-0"></div>
-                    <div class="modal-box">
-                        <h2 class="text-lg font-medium mb-4">Customer options</h2>
-                        <ul class="menu bg-base-100 w-56">
-                            <li><a @click="deleteUser(currCustomer.email); showMobileModal = !showMobileModal">Delete</a></li>
-                            <li><a>Disable</a></li>
-                        </ul>
-                        <div class="modal-action">
-                            <label @click="showMobileModal = !showMobileModal" class="btn">Cancel</label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </td>
+      <tr v-if="customers" v-for="row in filteredRows" :key="row._id" class="hover">
+        <td for="my-modal-6" v-html="highlightMatches(row.name)"></td>
+        <td for="my-modal-6" v-html="highlightMatches(row.lastname)"></td>
       </tr>
     </tbody>
   </table>
 
+<!-- Modal for moblie menu -->
+<input type="checkbox" id="my-modal-6" class="modal-toggle" />
+<div class="modal modal-bottom sm:modal-middle">
+  <div class="modal-box">
+    <h3 class="font-bold text-lg">Congratulations random Internet user!</h3>
+    <p class="py-4">You've been selected for a chance to get one year of subscription to use Wikipedia for free!</p>
+    <div class="modal-action">
+      <label for="my-modal-6" class="btn">Yay!</label>
+    </div>
+  </div>
+</div>
 
 <!-- The button to open new customer modal -->
-<button @click="showModal = !showModal" class="btn primary">New customer</button>
+<label for="my-modal-6" class="btn text-right">New customer</label>
 
-<div v-if="showModal" class="fixed z-50 inset-0 overflow-y-auto">
-  <div class="flex items-center justify-center min-h-screen">
-    <div class="fixed inset-0"></div>
-      <div class="modal-box">
-        <h2 class="text-lg font-medium mb-4">New Customer</h2>
-        
-        <form @submit.prevent="onSubmit" class="form-control">
-        <label class="label">
-        <span class="label-text">Customer Information</span>
-        </label>
-        <label class="flex flex-col input-group pb-4">
-        <span for="first-name" class="w-full max-w-xs">First name</span>
-        <input v-model="form.name" name="first-name" id="first-name" autocomplete="given-name" required type="text" placeholder="John" class="input input-bordered w-full max-w-xs" />
-        </label>
-        <label class="flex flex-col input-group pb-4">
-        <span for="last-name" class="w-full max-w-xs">Last name</span>
-        <input v-model="form.lastname" name="last-name" id="last-name" autocomplete="family-name" required type="text" placeholder="Dou" class="input input-bordered w-full max-w-xs" />
-        </label>
-        <label class="flex flex-col input-group pb-4">
-        <span for="enail" class="w-full max-w-xs">Email</span>
-        <input v-model="form.email" name="email" id="email" autocomplete="email" required type="email" placeholder="john@example.com" class="input input-bordered w-full max-w-xs" />
-        </label>
-        <div>
-        <button type="submit" class="btn primary">Add Customer</button>
-        <label @click="showModal = !showModal" class="btn">Cancel</label>
-        </div>
-        </form>
-        
-      </div>
+<input type="checkbox" id="my-modal-6" class="modal-toggle" />
+<div class="modal modal-bottom sm:modal-middle">
+  <div class="modal-box">
+    
+  <form @submit.prevent="onSubmit" class="form-control">
+  <label class="label">
+  <span class="label-text">Customer Information</span>
+  </label>
+  <label class="flex flex-col input-group pb-4">
+  <span for="first-name" class="w-full max-w-xs">First name</span>
+  <input v-model="form.name" name="first-name" id="first-name" autocomplete="given-name" required type="text" placeholder="John" class="input input-bordered w-full max-w-xs" />
+  </label>
+  <label class="flex flex-col input-group pb-4">
+  <span for="last-name" class="w-full max-w-xs">Last name</span>
+  <input v-model="form.lastname" name="last-name" id="last-name" autocomplete="family-name" required type="text" placeholder="Dou" class="input input-bordered w-full max-w-xs" />
+  </label>
+  <label class="flex flex-col input-group pb-4">
+  <span for="enail" class="w-full max-w-xs">Email</span>
+  <input v-model="form.email" name="email" id="email" autocomplete="email" required type="text" placeholder="john@example.com" class="input input-bordered w-full max-w-xs" />
+  </label>
+  <div class="modal-action">
+  <label for="my-modal-6" class="btn primary">Add Customer</label>
+  <label for="my-modal-6" class="btn">Cancel</label>
+  </div>
+  </form>
+
   </div>
 </div>
 
@@ -135,24 +123,9 @@ const userStore = useUserStore();
 const user = userStore.user;
 const allCustomersUrl = '/api/customers/all'
 const deleteUserUrl = '/api/customer/delete'
-const addCustomerUrl = "/api/customers/add";
 
 const allCustomers = ref({})
 const customers = ref([])
-const currCustomer = ref(null)
-
-const showModal = ref(false);
-const showMobileModal = ref(false);
-
-const filter = ref("")
-
-
-const form = ref({
-  name: "",
-  lastname: "",
-  email: "",
-})
-
 const requestOptions = {
       method: 'GET',
       headers: {
@@ -168,102 +141,15 @@ watchEffect(() => {
   
 })
 
-function loadMobileModal(customer: any) {
-    showMobileModal.value = !showMobileModal.value
-    currCustomer.value = customer
-}
+const filter = ref("")
 
 function fetchAllCustomers(): void {
   fetch(allCustomersUrl, requestOptions).then(async (response) => {
     if (response.ok) {
       allCustomers.value = await response.json()
-      // reset form at start and after
-      form.value.name = "";
-      form.value.lastname = "";
-      form.value.email = "";
+      //  console.log(allCustomers.value);
     }
   })
-}
-
-function deleteUser(email: string) {
-  Swal.fire({
-    title: `Are you sure you want to delete this ${email}?`,
-    showDenyButton: true,
-    confirmButtonText: 'Delete',
-    denyButtonText: `Cancel`,
-  })
-  .then((result) => {
-    if (result.isConfirmed) {
-      const requestOptions = {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-access-token': user.accessToken,
-        },
-        body: JSON.stringify({
-          email: email
-        }),
-      }
-
-      fetch(deleteUserUrl, requestOptions).then((response) => {
-        response.ok
-          ? fetchAllCustomers()
-          : Swal.fire(
-              'User was not deleted',
-              'You do not have the priviledges',
-              'info'
-            )
-      })
-    }
-    else if (result.isDenied) {
-      Swal.fire('Customer was not deleted', '', 'info')
-    }
-  })
-}
-
-function onSubmit(): void {
-  Swal.fire({
-    title: 'Are you sure you want to add the customer?',
-    showDenyButton: true,
-    confirmButtonText: 'Create',
-    denyButtonText: `Cancel`,
-  })
-  .then((result) => {
-    /*   */
-    if (result.isConfirmed) {
-      const requestOptions = {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-access-token': user.accessToken,
-        },
-        body: JSON.stringify({
-          name: form.value.name,
-          lastname: form.value.lastname,
-          email: form.value.email,
-        }),
-      }
-
-      fetch(addCustomerUrl, requestOptions).then((response) => {
-        response.ok
-          ? fetchAllCustomers()
-          : response.json().then(json => {
-            Swal.fire(
-              'Customer was not created',
-              json.message,
-              'info'
-            )
-          })
-      })
-    } else if (result.isDenied) {
-      Swal.fire('customer was not added', '', 'info')
-      // reset form
-      form.value.name = "";
-      form.value.lastname = "";
-      form.value.email = "";
-    }
-  });
-  showModal.value = !showModal.value
 }
 
 function changeDateFormat(str: string): String {
@@ -298,4 +184,91 @@ function highlightMatches(text: string) {
   const re = new RegExp(filter.value, 'ig');
   return text.replace(re, matchedText => `<strong>${matchedText}</strong>`);
 }
+
+function deleteUser(email: string) {
+  //console.log(email)
+  Swal.fire({
+    title: 'Are you sure you want to delete this customer?',
+    showDenyButton: true,
+    confirmButtonText: 'Delete',
+    denyButtonText: `Cancel`,
+  })
+  .then((result) => {
+    if (result.isConfirmed) {
+      const requestOptions = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-access-token': user.accessToken,
+        },
+        body: JSON.stringify({
+          email: email
+        }),
+      }
+
+      fetch(deleteUserUrl, requestOptions).then((response) => {
+        response.ok
+          ? fetchAllCustomers()
+          : Swal.fire(
+              'User was not deleted',
+              'You do not have the priviledges',
+              'info'
+            )
+      })
+    }
+    else if (result.isDenied) {
+      Swal.fire('Customer was not deleted', '', 'info')
+    }
+  })
+}
+
+
+const addCustomerUrl = "/api/customers/add";
+
+const form = ref({
+  name: "",
+  lastname: "",
+  email: "",
+})
+
+function onSubmit(): void {
+  Swal.fire({
+    title: 'Are you sure you want to add the customer?',
+    showDenyButton: true,
+    confirmButtonText: 'Create',
+    denyButtonText: `Cancel`,
+  })
+  .then((result) => {
+    /* Read more about isConfirmed, isDenied below */
+    if (result.isConfirmed) {
+      const requestOptions = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-access-token': user.accessToken,
+        },
+        body: JSON.stringify({
+          name: form.value.name,
+          lastname: form.value.lastname,
+          email: form.value.email,
+        }),
+      }
+
+      fetch(addCustomerUrl, requestOptions).then((response) => {
+        response.ok
+          ? router.push("/customers")
+          : response.json().then(json => {
+            Swal.fire(
+              'Customer was not created',
+              json.message,
+              'info'
+            )
+          })
+      })
+    } else if (result.isDenied) {
+      Swal.fire('customer was not added', '', 'info')
+    }
+  });
+}
 </script>
+

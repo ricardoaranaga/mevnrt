@@ -23,6 +23,7 @@ app.use(morgan("dev")); // configure morgan
 // routes
 require('./routes/auth.routes')(app);
 require('./routes/user.routes')(app);
+require('./routes/customer.routes')(app);
 
 app.listen(process.env.PORT, () => console.log(`Listening on port ${process.env.PORT}`))
 
